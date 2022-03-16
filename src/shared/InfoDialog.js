@@ -13,14 +13,14 @@ import { INFO_DIALOG } from './DialogNames';
 import { closeDialog } from '../modules/dashboard/redux/actions';
 import { noop } from '../utils';
 
-const CreatePoolDialog = props => (
+const InfoDialog = props => (
   <Dialog
     open={props.currentDialogNames.includes(INFO_DIALOG)}
     onClose={() => props.closeDialog(INFO_DIALOG)}
     className="custom-dialog custom-content-style"
   >
     <DialogTitle className="dialog-title">
-      Create Pool
+      Info
       <IconButton
         onClick={() => { props.closeDialog(INFO_DIALOG); }}
       >
@@ -33,12 +33,12 @@ const CreatePoolDialog = props => (
   </Dialog>
 );
 
-CreatePoolDialog.propTypes = {
+InfoDialog.propTypes = {
   currentDialogNames: PropTypes.arrayOf(PropTypes.string),
   closeDialog: PropTypes.func,
 };
 
-CreatePoolDialog.defaultProps = {
+InfoDialog.defaultProps = {
   currentDialogNames: [],
   closeDialog: noop,
 };
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => ({
   closeDialog: dialogName => dispatch(closeDialog(dialogName)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePoolDialog);
+export default connect(mapStateToProps, mapDispatchToProps)(InfoDialog);

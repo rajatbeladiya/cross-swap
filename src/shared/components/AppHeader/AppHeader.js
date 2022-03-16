@@ -9,19 +9,19 @@ const AppHeader = ({ account, handleLogin }) => {
   return (
     <div className="app-header-container" id="app-header">
       <div className="app-name-wrapper">
-        {/* <img src={LotteryIcon} className="app-icon" alt="app-icon" /> */}
-        <div className="app-name">Lucky Pool</div>
+        {/* <img src={Icon} className="app-icon" alt="app-icon" /> */}
+        <div className="app-name">Cross Swap</div>
       </div>
       <div className="menu-items">
       </div>
       <div className="wallet-connection">
         <div className="wallet-address">{account && account.sub}</div>
         <Button
-          basic
+          // basic
+          variant='contained'
           onClick={(event) => handleLogin(event)}
           className="autorize-btn"
         >
-          {/* <img src={UDIcon} className="ud-icon" alt="udicon" /> */}
           <div>{account && Object.keys(account).length > 0 ? 'Disconnect' : 'Connect'}</div>
         </Button>
       </div>

@@ -1,0 +1,34 @@
+.landing-container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 20px;
+    background-color: #1e1e2e;
+    .transfer-wrapper {
+        height: 400px;
+        min-width: 450px;
+        border: 1px solid black;
+        border-radius: 1.5rem;
+        background-color: #ffffff;
+        padding: 1.5rem;
+        .source-destination, .amount-token {
+            min-height: 110px;
+            padding: 1rem;
+            border: 1px solid #e7e7f7;
+            background-color: #f7f7fc;
+            border-radius: 1.5rem;
+        }
+        .amount-token {
+            margin-top: 20px;
+        }
+        .transfer {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            .transfer-btn {
+                background-color: $button-color;
+                color: #ffffff;
+            }
+        }
+    }
+}
