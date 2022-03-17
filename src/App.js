@@ -1,5 +1,5 @@
 import { ToastContainer } from 'react-toastify';
-import { MuiThemeProvider } from 'material-ui';
+import { ThemeProvider as MuiThemeProvider} from '@material-ui/core/styles';
 
 import Routes from './Routes';
 import MUITheme from './assets/mui/muiTheme';

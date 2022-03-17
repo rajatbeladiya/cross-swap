@@ -1,0 +1,56 @@
+@import "./variables";
+
+:export {
+    borderColor: $border-color;
+    borderColor50: $border-color-50;
+    borderColor100: $border-color-100;
+    borderColor200: $border-color-200;
+    borderColor300: $border-color-300;
+    borderColor400: $border-color-400;
+    borderColor500: $border-color-500;
+    borderColor600: $border-color-600;
+    borderColor650: $border-color-650;
+    borderColor700: $border-color-700;
+    borderColor800: $border-color-800;
+    borderColor900: $border-color-900;
+    borderColor950: $border-color-950;
+  
+    textColor: $text-color;
+    textColor50: $text-color-50;
+    textColor100: $text-color-100;
+    textColor200: $text-color-200;
+    textColor300: $text-color-300;
+    textColor400: $text-color-400;
+    textColor500: $text-color-500;
+    textColor600: $text-color-600;
+    textColor650: $text-color-650;
+    textColor700: $text-color-700;
+    textColor800: $text-color-800;
+    textColor900: $text-color-900;
+    textColor950: $text-color-950;
+  
+    backgroundColor: $background-color;
+    backgroundColor50: $background-color-50;
+    backgroundColor100: $background-color-100;
+    backgroundColor200: $background-color-200;
+    backgroundColor300: $background-color-300;
+    backgroundColor400: $background-color-400;
+    backgroundColor500: $background-color-500;
+    backgroundColor600: $background-color-600;
+    backgroundColor650: $background-color-650;
+    backgroundColor700: $background-color-700;
+    backgroundColor800: $background-color-800;
+    backgroundColor900: $background-color-900;
+    backgroundColor950: $background-color-950;
+  
+    // disabled: $disabled;
+    borderRadius: $border-radius;
+    standardPadding: $standard-padding;
+    standardMargin: $standard-margin;
+    // footerHeight: $footer-height;
+    headerHeight: $header-height;
+    // newHeaderHeight: $new-header-height;
+    errorColor: $error-color;
+    // outline: $outline;
+    // contentFontFamily: $content-font-family;
+}

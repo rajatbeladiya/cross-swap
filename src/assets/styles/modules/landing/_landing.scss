@@ -12,14 +12,47 @@
         background-color: #ffffff;
         padding: 1.5rem;
         .source-destination, .amount-token {
-            min-height: 110px;
-            padding: 1rem;
+            // min-height: 110px;
+            padding: 2rem 1rem 1rem;
             border: 1px solid #e7e7f7;
             background-color: #f7f7fc;
             border-radius: 1.5rem;
         }
-        .amount-token {
-            margin-top: 20px;
+        .source-destination {
+            display: flex;
+            flex: 5;
+            .source, .destination {
+                flex: 2;
+                .select-outer-wrapper {
+                    margin-top: 5px;
+                }
+            }
+            .swap {
+                flex: 1;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                // height: 80px;
+                .swap-btn {
+                    margin-top: 20px;
+                }
+            }
+        }
+        .token-details-wrapper {
+            .amount-token {
+                display: flex;
+                margin-top: 20px;
+                justify-content: space-between;
+                .form-field {
+                    width: 165px;
+                    .token {
+                        display: flex;
+                        flex-direction: column-reverse;
+                        align-items: flex-start;
+                        margin: 0;
+                    }
+                }
+            }
         }
         .transfer {
             display: flex;

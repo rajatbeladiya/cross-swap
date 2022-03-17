@@ -1,0 +1,65 @@
+.form-field {
+    &.in-a-line, .in-a-line {
+      display: flex;
+      justify-content: flex-start;
+      align-items: baseline;
+    }
+    label {
+      color: $text-color-800 !important;
+      &.form-label {
+        font-size: 0.8rem;
+        text-align: left;
+      }
+    }
+    .form-control {
+      margin-top: $standard-margin;
+      width: auto;
+      &.right-breathing-room {
+        margin-right: $standard-margin;
+      }
+      &.left-breathing-room {
+        margin-left: $standard-margin;
+      }
+      &.two-fields-in-a-line {
+        width: 100%;
+        > div {
+          width: 100%;
+          &.feedback-field {
+            .field-wrapper .input-wrapper > div, .field-wrapper, .input-wrapper, > div {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    > div {
+      width: 100%;
+      &.feedback-field {
+        .field-wrapper .input-wrapper > div, .field-wrapper, .input-wrapper, > div {
+          width: 100%;
+        }
+      }
+    }
+  }
+  
+  .two-column-form {
+    display: flex;
+    justify-content: space-around;
+    .children {
+      flex: 1;
+      max-width: calc(50% - 30px);
+      .form-field {
+        margin: $standard-margin 0px;
+      }
+    }
+  }
+  
+  .error-field input {
+    border-color: $error-color !important;
+  }
+  
+  .error {
+    font-size: 0.75rem;
+    color: $error-color;
+    margin-top: $standard-margin / 2;
+  }

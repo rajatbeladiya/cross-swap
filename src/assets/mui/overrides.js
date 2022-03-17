@@ -1,6 +1,6 @@
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 
-import variables from '../styles/app.scss';
+import variables from '../styles/export.module.scss';
 
 const defaultTheme = createMuiTheme();
 
@@ -9,9 +9,11 @@ const overrides = {
   },
   overrides: {
     MuiButtonBase: {
-      focusVisible: {
-        outline: `auto 5px ${variables.outline}`,
-      },
+      "root": {
+        "&$focusVisible": {
+          outline: `auto 5px ${variables.outline}`,
+        },
+      }
     },
     MuiFormLabel: {
       root: {
@@ -19,16 +21,16 @@ const overrides = {
         fontSize: 18,
         transform: 'translate(0, 1.5px) scale(0.75) !important',
         transformOrigin: 'top left !important',
-      },
-      error: {
-        color: `${variables.errorColor} !important`,
+        "&$error": {
+          color: `${variables.errorColor} !important`,
+        }
       },
     },
     MuiInput: {
       root: {
         padding: 0,
         'label + &': {
-          marginTop: `${defaultTheme.spacing.unit * 3}px !important`,
+          marginTop: `${defaultTheme.spacing(3)}px !important`,
         },
         'label + & ::-webkit-input-placeholder': {
           opacity: '0.5 !important',
@@ -64,12 +66,12 @@ const overrides = {
         '&::placeholder': {
           textOverflow: 'ellipsis !important',
         },
-      },
-      error: {
-        '& input': {
-          border: `1px solid ${variables.errorColor}`,
-          '&:focus': {
-            borderColor: `${variables.errorColor}`,
+        "&$error": {
+          '& input': {
+            border: `1px solid ${variables.errorColor}`,
+            '&:focus': {
+              borderColor: `${variables.errorColor}`,
+            },
           },
         },
       },
@@ -99,15 +101,15 @@ const overrides = {
         '&:hover': {
           backgroundColor: `${variables.backgroundColor200} !important`,
         },
-      },
-      selected: {
-        color: '#fff !important',
-        backgroundColor: `${variables.backgroundColor800} !important`,
-        '&:after': {
-          display: 'none',
-        },
-        '&:hover': {
+        "&$selected": {
+          color: '#fff !important',
           backgroundColor: `${variables.backgroundColor800} !important`,
+          '&:after': {
+            display: 'none',
+          },
+          '&:hover': {
+            backgroundColor: `${variables.backgroundColor800} !important`,
+          },
         },
       },
     },
@@ -115,9 +117,9 @@ const overrides = {
     MuiCheckbox: {
       root: {
         color: `${variables.textColor800} !important`,
-      },
-      disabled: {
-        color: `${variables.textColor400} !important`,
+        "&$disabled": {
+          color: `${variables.textColor400} !important`,
+        },
       },
     },
   },
