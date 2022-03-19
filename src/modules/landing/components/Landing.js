@@ -1,81 +1,34 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
-import SwapIcon from '@material-ui/icons/SwapHorizRounded';
 
-import Select from '../../../shared/components/Select/Select';
 import TokenDetails from './TokenDetails';
-import { noop, MUMBAI, RINKEBY, FUJI } from '../../../utils';
+import Source from './Source';
+import { noop } from '../../../utils';
 
-const states = [
-  {
-    label: (
-      <div>
-        <img src={MUMBAI.icon} className="token-icon" alt="token-icon" />
-        <label>{MUMBAI.name}</label>
-      </div>
-    ),
-    value: 'MUMBAI'
-  },
-  {
-    label: (
-      <div>
-        <img src={RINKEBY.icon} className="token-icon" alt="token-icon" />
-        <label>{RINKEBY.name}</label>
-      </div>
-    ),
-    value: 'RINKEBY'
-  },
-  {
-    label: (
-      <div>
-        <img src={FUJI.icon} className="token-icon" alt="token-icon" />
-        <label>{FUJI.name}</label>
-      </div>
-    ),
-    value: 'FUJI'
-  },
-];
-
-const Landing = ({ onTransferClick }) => (
+const Landing = ({
+  onTransferClick, sourceNetworkOptions, onSourceChange, selectedSource,
+  selectedDestination, onDestinationChange, destinationNetworkOptions,
+  tokenOptions, onTokenChange, selectedToken,
+}) => (
   <div className="landing-container">
     <div className="transfer-wrapper">
-      <div className="source-destination">
-        <div className="source">
-          <label>Source</label>
-          <Select
-            name="source"
-            placeholder="Select..."
-            valueKey="value"
-            options={states}
-            // value={selectedState}
-            // onChange={onStateChange}
-          />
-        </div>
-        <div className="swap">
-          <IconButton
-            // onClick={() => { props.closeDialog(CHANGE_PASSWORD_DIALOG); }}
-            className="swap-btn"
-          >
-            <SwapIcon />
-          </IconButton>
-        </div>
-        <div className="destination">
-          <label>Destination</label>
-          <Select
-            name="destination"
-            placeholder="Select..."
-            valueKey="value"
-            options={states}
-            // value={selectedState}
-            // onChange={onStateChange}
-          />
-        </div>
+      <div className="title">
+        <h2>Swap</h2>
       </div>
-      <div className="token-details-wrapper">
-        <TokenDetails />
-      </div>
+      <Source
+        sourceNetworkOptions={sourceNetworkOptions}
+        destinationNetworkOptions={destinationNetworkOptions}
+        onSourceChange={onSourceChange}
+        onDestinationChange={onDestinationChange}
+        selectedSource={selectedSource}
+        selectedDestination={selectedDestination}
+      />
+      <TokenDetails
+        tokenOptions={tokenOptions}
+        onTokenChange={onTokenChange}
+        selectedToken={selectedToken}
+      />
       <div className="transfer">
         <Button
           variant="contained"
@@ -91,10 +44,28 @@ const Landing = ({ onTransferClick }) => (
 
 Landing.propTypes = {
   onTransferClick: PropTypes.func,
+  sourceNetworkOptions: PropTypes.instanceOf(Array),
+  destinationNetworkOptions: PropTypes.instanceOf(Array),
+  tokenOptions: PropTypes.instanceOf(Array),
+  onSourceChange: PropTypes.func,
+  selectedSource: PropTypes.instanceOf(Object),
+  selectedDestination: PropTypes.instanceOf(Object),
+  onDestinationChange: PropTypes.func,
+  onTokenChange: PropTypes.func,
+  selectedToken: PropTypes.instanceOf(Object),
 }
 
 Landing.defaultProps = {
   onTransferClick: noop,
+  sourceNetworkOptions: [],
+  destinationNetworkOptions: [],
+  tokenOptions: [],
+  onSourceChange: noop,
+  selectedSource: {},
+  selectedDestination: {},
+  onDestinationChange: noop,
+  onTokenChange: noop,
+  selectedToken: {},
 }
 
 export default Landing;

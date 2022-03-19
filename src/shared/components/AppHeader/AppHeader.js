@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router';
 import Button from '@material-ui/core/Button';
 
-import { noop } from "../../../utils";
+import { noop, start_and_end } from "../../../utils";
 
-const AppHeader = ({ account, handleLogin }) => {
+const AppHeader = ({ account, onConnect, web3, onDisconnect }) => {
   return (
     <div className="app-header-container" id="app-header">
       <div className="app-name-wrapper">
@@ -15,14 +15,14 @@ const AppHeader = ({ account, handleLogin }) => {
       <div className="menu-items">
       </div>
       <div className="wallet-connection">
-        <div className="wallet-address">{account && account.sub}</div>
+        <div className="wallet-address">{web3 && web3.address && start_and_end(web3.address)}</div>
         <Button
           // basic
           variant='contained'
-          onClick={(event) => handleLogin(event)}
+          onClick={(event) => web3 && web3.address ? onDisconnect(event) : onConnect(event)}
           className="autorize-btn"
         >
-          <div>{account && Object.keys(account).length > 0 ? 'Disconnect' : 'Connect'}</div>
+          <div>{web3 && web3.address ? 'Disconnect' : 'Connect'}</div>
         </Button>
       </div>
     </div>
@@ -32,15 +32,17 @@ const AppHeader = ({ account, handleLogin }) => {
 AppHeader.propTypes = {
   account: PropTypes.string,
   admin: PropTypes.string,
-  onConnectClick: PropTypes.func,
-  handleLogin: PropTypes.func,
+  onConnect: PropTypes.func,
+  onDisconnect: PropTypes.func,
+  web3: PropTypes.instanceOf(Object),
 }
 
 AppHeader.defaultProps =  {
   account: '',
   admin: '',
-  onConnectClick: noop,
-  handleLogin: noop,
+  onConnect: noop,
+  onDisconnect: noop,
+  web3: {},
 }
 
 export default withRouter(AppHeader);

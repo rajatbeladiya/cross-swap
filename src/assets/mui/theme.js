@@ -5,6 +5,9 @@ const theme = {
         contrastText: '#fff',
       },
     },
+    typography: {
+      fontFamily: "monospace",
+    }
   };
   
   export default theme;

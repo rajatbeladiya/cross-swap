@@ -1,83 +1,70 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withRouter } from 'react-router';
-import { reduxForm, Form, Field } from 'redux-form';
+import TextField from '@material-ui/core/TextField';
+import { connect } from 'react-redux';
 
-import Select from '../../../shared/components/Select/ReduxFormWrapper';
-import { FUJI, MUMBAI, noop, RINKEBY } from '../../../utils';
-import { renderTextField } from '../../../shared/components/ReduxForm';
-import { FormControlLabel } from '@material-ui/core';
+import Select from '../../../shared/components/Select/Select';
+import { noop } from '../../../utils';
 
-const states = [
-  {
-    label: (
-      <div>
-        <img src={MUMBAI.icon} className="token-icon" alt="token-icon" />
-        <label>{MUMBAI.name}</label>
-      </div>
-    ),
-    value: 'MUMBAI'
-  },
-  {
-    label: (
-      <div>
-        <img src={RINKEBY.icon} className="token-icon" alt="token-icon" />
-        <label>{RINKEBY.name}</label>
-      </div>
-    ),
-    value: 'RINKEBY'
-  },
-  {
-    label: (
-      <div>
-        <img src={FUJI.icon} className="token-icon" alt="token-icon" />
-        <label>{FUJI.name}</label>
-      </div>
-    ),
-    value: 'FUJI'
-  },
-];
-
-const TokenDetails = ({ handleSubmit, onDetailsChange }) => (
-  <Form onSubmit={handleSubmit(onDetailsChange)} className="amount-token">
-    <div className="form-field">
-      <Field
-        className="input-field"
+const TokenDetails = ({
+  tokenOptions, onTokenChange,
+  selectedToken, poolInfo,
+}) => (
+  <div className="amount-token">
+    <div className="amount form-field">
+      <label>Amount</label>
+      <TextField
+        id="amount"
         name="amount"
-        component={renderTextField}
-        label="Amount"
+        placeholder="Amount"
+        // value={schoolName}
+        // onChange={onSchoolNameChange}
       />
+      <div className="footer limits-amount">
+        <div className="min-amount">Min: {(poolInfo && poolInfo.minDepositAmount) || 0}</div>
+        <div className="max-amount">Max: {(poolInfo && poolInfo.maxDepositAmount) || 0}</div>
+      </div>
     </div>
-    <div className="form-field">
-      <FormControlLabel
-        className="form-field token"
-        classes={{
-          root: 'token-root',
-          label: 'token-label',
-        }}
-        label="Token"
-        labelPlacement="start"
-        control={
-          <Field
-            name="token"
-            component={Select}
-            options={states}
-          />
-        }
+    <div className="token form-field">
+      <label>Token</label>
+      <Select
+        name="token"
+        placeholder="Select..."
+        valueKey="value"
+        options={tokenOptions}
+        value={selectedToken}
+        onChange={onTokenChange}
+        isSearchable={false}
       />
+      <div className="footer">
+        <div className="balance">Balance: 0.231</div>
+      </div>
     </div>
-  </Form>
+  </div>
 );
 
 TokenDetails.propTypes = {
   handleSubmit: PropTypes.func.isRequired,
   onDetailsChange: PropTypes.func,
   loading: PropTypes.bool,
+  tokenOptions: PropTypes.instanceOf(Array),
+  selectedToken: PropTypes.instanceOf(Object),
+  poolInfo: PropTypes.instanceOf(Object),
 };
 
 TokenDetails.defaultProps = {
   onDetailsChange: noop,
   loading: false,
+  tokenOptions: [],
+  selectedToken: {},
+  poolInfo: {},
 };
 
-export default reduxForm({ form: 'TokenDetails' })(withRouter(TokenDetails));
+const mapStateToProps = state => ({
+  poolInfo: state.landing.poolInfo,
+});
+
+const mapDispatchToProps = dispatch => ({
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TokenDetails);

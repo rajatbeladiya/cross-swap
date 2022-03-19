@@ -3,6 +3,7 @@ import RequestStates from '../../../utils/request-states';
 
 const INITIAL_STATE = {
   currentDialogNames: [],
+  web3: {}
 };
 
 
@@ -23,6 +24,14 @@ export default (state = INITIAL_STATE, action) => {
         currentDialogNames: state.currentDialogNames
           .filter(dialogName => dialogName !== action.payload),
         selectedTab: {},
+      };
+    case actionTypes.SET_WEB3:
+      return {
+        ...state,
+        web3: {
+          ...state.web3,
+          ...action.payload
+        }
       };
     default:
       return state;
