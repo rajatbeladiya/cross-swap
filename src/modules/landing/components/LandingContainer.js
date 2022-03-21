@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { ethers } from 'ethers';
 
 import Landing from './Landing';
 import * as landingActions from '../redux/actions';
-import { TESTNETS, availablePairs, noop, TOKENS, tokensConfig } from '../../../utils';
+import { TESTNETS, availablePairs, noop, TOKENS, tokensConfig, ETHAddress, getContract } from '../../../utils';
+import ERC20ABI from '../../../config/ERC20ABI.json';
 
 class LandingContainer extends Component {
 
@@ -33,15 +35,26 @@ class LandingContainer extends Component {
     this.setState({ selectedDestination: selectedValue });
   } 
 
-  onTokenChange = (selectedValue) => {
-    const { selectedToken, selectedSource, selectedDestination } = this.state;
-    const { getPoolInfo } = this.props;
+  onTokenChange = async (selectedValue) => {
+    const { selectedSource, selectedDestination } = this.state;
+    const { getPoolInfo, web3: { web3Provider } } = this.props;
+    const tokenAddress = tokensConfig[selectedValue.value][selectedSource.chainId];
     const data = {
-      tokenAddress: tokensConfig[selectedValue.value][selectedSource.chainId],
+      tokenAddress,
       fromChainId: selectedSource.chainId,
       toChainId: selectedDestination.chainId
     };
-    console.log('data======', data);
+    let accounts, userBalance;
+    accounts = await web3Provider.listAccounts();
+    if (tokenAddress === ETHAddress) {
+      userBalance = await web3Provider.getBalance(accounts[0]);
+      console.log('userBalance======', ethers.utils.formatEther(userBalance));
+    } else {
+      const tokenContract = await getContract(tokenAddress, ERC20ABI, web3Provider);
+      console.log('tokenContract=======', tokenContract);
+      userBalance = await tokenContract.balanceOf(accounts[0]);
+      console.log('userBalance======', ethers.utils.formatUnits(userBalance));
+    }
     getPoolInfo(data);
     this.setState({ selectedToken: selectedValue });
   }
@@ -84,14 +97,17 @@ class LandingContainer extends Component {
 
 LandingContainer.propTypes = {
   getPoolInfo: PropTypes.func,
+  web3: PropTypes.instanceOf(Object),
 };
 
 LandingContainer.defaultProps = {
   getPoolInfo: noop,
+  web3: {},
 };
 
 const mapStateToProps = state => ({
   data: state.landing.data,
+  web3: state.dashboard.web3,
 });
 
 const mapDispatchToProps = dispatch => ({

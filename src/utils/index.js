@@ -1,3 +1,5 @@
+import { ethers } from 'ethers';
+
 import MaticIcon from '../assets/icons/tokens/matic.svg';
 import EthIcon from '../assets/icons/tokens/eth.svg';
 import AvaxIcon from '../assets/icons/tokens/avax.svg';
@@ -83,11 +85,13 @@ export const BICO = {
 
 export const TOKENS = [ETH, USDC, USDT, BICO];
 
+export const ETHAddress = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
+
 export const tokensConfig = {
   ETH: {
     [MUMBAI.chainId]: "0xa6fa4fb5f76172d178d61b04b0ecd319c5d1c0aa",
-    [GOERLI.chainId]: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-    [RINKEBY.chainId]: "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    [GOERLI.chainId]: ETHAddress,
+    [RINKEBY.chainId]: ETHAddress,
     [FUJI.chainId]: "0x7fcdc2c1ef3e4a0bcc8155a558bb20a7218f2b05",
   },
   USDC: {
@@ -108,4 +112,9 @@ export const tokensConfig = {
     [RINKEBY.chainId]: "",
     [FUJI.chainId]: "",
   },
+}
+
+
+export const getContract = async (contractAddress, contractABI, web3provider) => {
+  return await new ethers.Contract(contractAddress, contractABI, web3provider);
 }
