@@ -49,7 +49,7 @@ class AppHeaderContainer extends Component {
     try {
       const { setWeb3 } = this.props;
       const provider = await web3Modal.connect();
-      const web3Provider = new providers.Web3Provider(provider)
+      const web3Provider = new providers.Web3Provider(provider);
   
       const signer = web3Provider.getSigner();
       const address = await signer.getAddress();

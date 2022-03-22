@@ -4,6 +4,9 @@
     justify-content: center;
     padding-top: 20px;
     background-color: #1e1e2e;
+    .swap-block-ui {
+        height: fit-content;
+    }
     .network-options {
         display: flex;
         align-items: center;

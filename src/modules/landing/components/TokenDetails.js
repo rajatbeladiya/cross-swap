@@ -7,8 +7,9 @@ import Select from '../../../shared/components/Select/Select';
 import { noop } from '../../../utils';
 
 const TokenDetails = ({
-  tokenOptions, onTokenChange,
-  selectedToken, poolInfo,
+  tokenOptions, onTokenChange, onAmountChange,
+  selectedToken, poolInfo, userSelectedTokenBalance,
+  amount,
 }) => (
   <div className="amount-token">
     <div className="amount form-field">
@@ -17,8 +18,8 @@ const TokenDetails = ({
         id="amount"
         name="amount"
         placeholder="Amount"
-        // value={schoolName}
-        // onChange={onSchoolNameChange}
+        value={amount}
+        onChange={onAmountChange}
       />
       <div className="footer limits-amount">
         <div className="min-amount">Min: {(poolInfo && poolInfo.minDepositAmount) || 0}</div>
@@ -37,7 +38,7 @@ const TokenDetails = ({
         isSearchable={false}
       />
       <div className="footer">
-        <div className="balance">Balance: 0.231</div>
+        <div className="balance">Balance: {Number(userSelectedTokenBalance).toFixed(4)}</div>
       </div>
     </div>
   </div>
@@ -50,6 +51,9 @@ TokenDetails.propTypes = {
   tokenOptions: PropTypes.instanceOf(Array),
   selectedToken: PropTypes.instanceOf(Object),
   poolInfo: PropTypes.instanceOf(Object),
+  userSelectedTokenBalance: PropTypes.number,
+  onAmountChange: PropTypes.func,
+  amount: PropTypes.number,
 };
 
 TokenDetails.defaultProps = {
@@ -58,6 +62,9 @@ TokenDetails.defaultProps = {
   tokenOptions: [],
   selectedToken: {},
   poolInfo: {},
+  userSelectedTokenBalance: 0,
+  onAmountChange: noop,
+  amount: 0,
 };
 
 const mapStateToProps = state => ({

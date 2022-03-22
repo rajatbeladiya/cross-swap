@@ -5,7 +5,6 @@ import EthIcon from '../assets/icons/tokens/eth.svg';
 import AvaxIcon from '../assets/icons/tokens/avax.svg';
 import USDCIcon from '../assets/icons/tokens/usdc.svg';
 import USDTIcon from '../assets/icons/tokens/usdt.svg';
-import BICOIcon from '../assets/icons/tokens/bico.svg';
 
 export const noop = () => {};
 
@@ -77,13 +76,7 @@ export const USDT = {
   icon: USDTIcon
 }
 
-export const BICO = {
-  name: "BICO",
-  value: "BICO",
-  icon: BICOIcon
-}
-
-export const TOKENS = [ETH, USDC, USDT, BICO];
+export const TOKENS = [ETH, USDC, USDT];
 
 export const ETHAddress = "0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee";
 
@@ -92,25 +85,22 @@ export const tokensConfig = {
     [MUMBAI.chainId]: "0xa6fa4fb5f76172d178d61b04b0ecd319c5d1c0aa",
     [GOERLI.chainId]: ETHAddress,
     [RINKEBY.chainId]: ETHAddress,
-    [FUJI.chainId]: "0x7fcdc2c1ef3e4a0bcc8155a558bb20a7218f2b05",
+    [FUJI.chainId]: "",
+    decimal: 18,
   },
   USDC: {
     [MUMBAI.chainId]: "0xdA5289fCAAF71d52a80A254da614a192b693e977",
     [GOERLI.chainId]: "0xb5B640E6414b6DeF4FC9B3C1EeF373925effeCcF",
     [RINKEBY.chainId]: "",
     [FUJI.chainId]: "",
+    decimal: 6
   },
   USDT: {
     [MUMBAI.chainId]: "0xeaBc4b91d9375796AA4F69cC764A4aB509080A58",
     [GOERLI.chainId]: "0x64ef393b6846114bad71e2cb2ccc3e10736b5716",
     [RINKEBY.chainId]: "0xfab46e002bbf0b4509813474841e0716e6730136",
-    [FUJI.chainId]: "",
-  },
-  BICO: {
-    [MUMBAI.chainId]: "0xac42d8319ce458b22a72b45f58c0dcfeee824691",
-    [GOERLI.chainId]: "0xDdc47b0cA071682e8dc373391aCA18dA0Fe28699",
-    [RINKEBY.chainId]: "",
-    [FUJI.chainId]: "",
+    [FUJI.chainId]: "0xb4e0f6fef81bdfea0856bb846789985c9cff7e85",
+    decimal: 18
   },
 }
 
