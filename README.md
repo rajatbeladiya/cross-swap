@@ -6,7 +6,11 @@ Users can move their assets from one blockchain to another blockchain in a few s
 
 # Live
 
+[https://crosswap.netlify.app/](https://crosswap.netlify.app/ "Cross Swap")
+
 # Demo Video
+
+[https://youtu.be/jjxvBoz7-nI](https://youtu.be/jjxvBoz7-nI "Cross Swap Demo")
 
 # Setup and run the app
 
